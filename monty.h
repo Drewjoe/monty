@@ -1,8 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define STACK 0
-#define QUEUE 1
+#define STACK 1
+#define QUEUE 0
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,6 +62,47 @@ typedef struct error
 	int out;
 	void (*error_type)(void);
 } error_t;
+
+/**
+ * struct info_s - data from monty file
+ * @cmd: line from file
+ * @arg: argument to excute
+ * @l_number: line number
+ * @fp: file descriptor
+ * @fn: file name
+ * @type: QUEUE STACK
+ * Description: Information about the commands in the monty file
+ */
+typedef struct info_s
+{
+	char *cmd;
+	char **arg;
+	char *fn;
+	int l_number;
+	FILE *fp;
+	int type;
+} info_t;
+extern info_t info;
+
+/* Error-Handler */
+void handle_err(int code);
+void malloc_fail(void);
+void monty_usage(void);
+void push_use(void);
+void unknown_command(void);
+void file_perm(void);
+void pint_err(void);
+void pop_err(void);
+void swap_err(void);
+void add_err(void);
+void sub_err(void);
+void div_err(void);
+void _zero(void);
+void mul_err(void);
+void mod_err(void);
+void pchar_err(void);
+void pchar_err_2(void);
+
 
 void get_op(char *op, stack_t **stack, unsigned int line_number);
 void push_m(stack_t **stack, unsigned int line_number);
