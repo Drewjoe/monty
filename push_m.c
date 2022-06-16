@@ -19,6 +19,8 @@ void push_m(stack_t **stack, unsigned int line_number)
 	n_node->n = atoi(info.arg[1]);
 	if (info.type == STACK)
 	{
-		add_node(stack, n_node);
+		add_node_lifo(stack, n_node);
 	}
+	else
+		add_node(stack, n_node);
 }
