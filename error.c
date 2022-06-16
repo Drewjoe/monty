@@ -1,10 +1,10 @@
 #include "monty.h"
 
 /**
- * handle_error - print errors
+ * handle_err - print errors
  * @code: exit code
  */
-void handle_error(int code)
+void handle_err(int code)
 {
 	error_t er[] = {
 		{1, monty_usage},
