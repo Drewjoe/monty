@@ -126,7 +126,7 @@ void pstr_m(stack_t **stack, unsigned int line_number);
 void free_stack(int status, void *arg);
 void fs_close_m(int status, void *arg);
 void free_lineptr(int status, void *arg);
-stack_t *add_node(stack_t **stack, const int n);
+void add_node_(stack_t **stack, stack_t *n_node);
 void add_node_fifo(stack_t **stack, stack_t *n_node);
 
 #endif /* MONTY_H */
