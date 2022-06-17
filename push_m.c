@@ -22,5 +22,5 @@ void push_m(stack_t **stack, unsigned int line_number)
 		add_node_lifo(stack, n_node);
 	}
 	else
-		add_node(stack, n_node);
+		add_node_fifo(stack, n_node);
 }
