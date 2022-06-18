@@ -11,6 +11,6 @@ void pint_m(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (*stack == NULL)
-		handle_error(6);
+		handle_err(6);
 	fprintf(stdout, "%d\n", (*stack)->n);
 }
