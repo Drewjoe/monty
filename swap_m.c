@@ -1,5 +1,4 @@
 #include "monty.h"
-extern var_t var;
 
 /**
  * swap_m - swap top two elements of `stack'
