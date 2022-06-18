@@ -8,14 +8,18 @@
  */
 void pall_m(stack_t **stack, unsigned int line_number)
 {
-	stack_t *node = *stack;
-	(void)line_number;
+	stack_t *head;
 
-	if (!node)
-		return;
-	while (node)
+	(void)(line_number);
+
+	head = *stack;
+	while (head != NULL)
 	{
-		printf("%d\n", node->n);
-		node = node->next;
+		printf("%d\n", head->n);
+		head = head->next;
+		if (head == *stack)
+		{
+			return;
+		}
 	}
 }
