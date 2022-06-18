@@ -9,6 +9,7 @@
 void swap_m(stack_t **stack, unsigned int line_number)
 {
 	stack_t *next;
+	(void)line_number;
 
 	if (var.stack_len < 2)
 	{
