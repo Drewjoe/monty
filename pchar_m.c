@@ -8,36 +8,17 @@
  */
 void pchar_m(stack_t **stack, unsigned int line_number)
 {
-	int ch;
-
-	if (var.stack_len < 1)
+	if (!stack || !*stack)
 	{
-		pchar_err();
+		dprintf(2, "L%d: can't pchar, stack empty\n", line_number);
+		free_stuff();
+		exit(EXIT_FAILURE);
 	}
-	ch = (*stack)->n;
-	if (!isascii(ch))
+	if ((*stack)->n < 0 || (*stack)->n > 127)
 	{
-		pchar_err_2();
+		dprintf(2, "L%d: can't pchar, value out of range\n", line_number);
+		free_stuff();
+		exit(EXIT_FAILURE);
 	}
-	printf("%c\n", ch);
-}
-
-/**
- * pchar_err - error in case of empty stack
- */
-void pchar_err(void)
-{
-	fprintf(stderr, "L%d: can't pchar, stack empty\n", info.l_number);
-	free_info();
-	exit(EXIT_FAILURE);
-}
-
-/**
- * pchar_err_2 - error in case value out of range
- */
-void pchar_err_2(void)
-{
-	fprintf(stderr, "L%d: can't pchar, value out of range\n", info.l_number);
-	free_info();
-	exit(EXIT_FAILURE);
+	printf("%c\n", (*stack)->n);
 }
