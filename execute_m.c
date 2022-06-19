@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
 
 /**
  * exec_m - check op against valid opcodes
@@ -53,14 +52,14 @@ info_t info;
 int treat_m(char *filename)
 {
 	ssize_t n_r = 1;
-	size_t len = 0;
+	int len = 0;
 	stack_t *stack = NULL;
 
 	info.fn = filename;
 	info.fp = fopen(info.fn, "r");
 	if (info.fp == NULL)
 		handle_err(2);
-	while ((n_r = fgets(&info.cmd, &len, info.fp)) > 0)
+	while ((n_r = fgets(char **info.cmd, &len, info.fp)) > 0)
 	{
 		if (*info.cmd == '\n')
 			continue;
