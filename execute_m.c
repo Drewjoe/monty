@@ -60,7 +60,7 @@ int treat_m(char *filename)
 	info.fp = fopen(info.fn, "r");
 	if (info.fp == NULL)
 		handle_err(2);
-	while ((n_r = fget(&info.cmd, &len, info.fp)) > 0)
+	while ((n_r = fgets(&info.cmd, &len, info.fp)) > 0)
 	{
 		if (*info.cmd == '\n')
 			continue;
@@ -94,10 +94,10 @@ int split(void)
 		info.arg[i++] = token;
 		if (i >= bufsize)
 		{
-			info.arg = realloc(info.arg, bufsize, bufsize * 2);
+			info.arg = realloc(info.arg, bufsize * 2);
 			if (info.arg == NULL)
 			{
-				handle_error(1);
+				handle_err(4);
 			}
 		}
 		token = strtok(NULL, "\n\t\r ");
