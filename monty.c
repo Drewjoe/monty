@@ -10,10 +10,10 @@ int main(int argc, char **argv)
 {
 	info.type = STACK;
 	if (argc != 2)
-		handle_error(1);
+		handle_err(1);
 	else
 	{
-	treat_monty(argv[1]);
+	treat_m(argv[1]);
 	}
 	return (EXIT_SUCCESS);
 }
