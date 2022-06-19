@@ -70,7 +70,7 @@ int treat_m(char *filename)
 			continue;
 		if (info.arg == NULL)
 			continue;
-		get_op(&stack);
+		exec_m(&stack);
 	}
 	free_info();
 	free_list(stack);
