@@ -104,7 +104,6 @@ void pchar_err(void);
 void pchar_err_2(void);
 
 
-void get_op(char *op, stack_t **stack, unsigned int line_number);
 void push_m(stack_t **stack, unsigned int line_number);
 void push2_m(stack_t **stack, int n);
 void pall_m(stack_t **stack, unsigned int line_number);
@@ -131,5 +130,7 @@ void add_node_fifo(stack_t **stack, stack_t *n_node);
 int treat_m(char *filename);
 void free_info(void);
 void free_list(stack_t *stack);
+void exec_m(stack_t **stack);
+int split(void);
 
 #endif /* MONTY_H */
