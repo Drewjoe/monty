@@ -14,7 +14,8 @@ int main(int argc, char *argv[])
 
 	info.l_number = 0;
 	info.fp = NULL;
-	char *arg = NULL, *op = NULL;
+	char *arg = NULL,
+	char *cmd = NULL;
 	size_t n = 0;
 
 	var.queue = 0;
@@ -24,21 +25,21 @@ int main(int argc, char *argv[])
 	{
 		handle_err(1);
 	}
-	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	info.fp = fopen(argv[1], "r");
+	if (info.fp == NULL)
 	{
 		handle_err(2);
 	}
 	on_exit(free_info, &arg);
 	on_exit(free_list, &stack);
-	on_exit(free_info, fp);
-	while (getline(&arg, &n, fp) != -1)
+	on_exit(free_info, info.fp);
+	while (getline(&arg, &n, info.fp) != -1)
 	{
-		l_number++;
-		op = strtok(arg, "\n\t\r ");
-		if (op != NULL && op[0] != '#')
+		info.l_number++;
+		cmd = strtok(arg, "\n\t\r ");
+		if (cmd != NULL && op[0] != '#')
 		{
-			get_op(op, &stack, l_number);
+			get_op(cmd, &stack, info.l_number);
 		}
 	}
 	exit(EXIT_SUCCESS);
