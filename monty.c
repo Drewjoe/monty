@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	info.l_number = 0;
 	info.fp = NULL;
 	char *arg = NULL,
-	char *cmd = NULL;
+	info.cmd = NULL;
 	size_t n = 0;
 
 	var.queue = 0;
@@ -30,16 +30,16 @@ int main(int argc, char *argv[])
 	{
 		handle_err(2);
 	}
-	on_exit(free_info, &arg);
-	on_exit(free_list, &stack);
-	on_exit(free_info, info.fp);
+	_exit(free_info, &arg);
+	_exit(free_list, &stack);
+	_exit(free_info, info.fp);
 	while (getline(&arg, &n, info.fp) != -1)
 	{
 		info.l_number++;
-		cmd = strtok(arg, "\n\t\r ");
-		if (cmd != NULL && op[0] != '#')
+		info.cmd = strtok(arg, "\n\t\r ");
+		if (info.cmd != NULL && info.cmd[0] != '#')
 		{
-			get_op(cmd, &stack, info.l_number);
+			get_op(info.cmd, &stack, info.l_number);
 		}
 	}
 	exit(EXIT_SUCCESS);
