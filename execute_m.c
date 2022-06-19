@@ -1,13 +1,14 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
- * get_op - check op against valid opcodes
+ * exec_m - check op against valid opcodes
  * @op: op to check
  * @stack: double pointer to the beginnig of the stack
  * @line_number: script line number
  * Return: void
  */
-void get_op(char *op, stack_t **stack, unsigned int line_number)
+void exec_m(stack_t **stack)
 {
 	size_t i;
 
@@ -36,7 +37,7 @@ void get_op(char *op, stack_t **stack, unsigned int line_number)
 	{
 		if (strcmp(valid_ops[i].opcode, op) == 0)
 		{
-			valid_ops[i].f(stack, line_number);
+			valid_ops[i].f(stack, info.l_number);
 			return;
 		}
 	}
@@ -73,5 +74,36 @@ int treat_m(char *filename)
 	}
 	free_info();
 	free_list(stack);
+	return (0);
+}
+/**
+ * split - Split The Line Into Command and Arguments
+ *Return: 0 On Success 1 On Failure
+ */
+int split(void)
+{
+	char *token;
+	size_t bufsize = 20, i = 0;
+
+	info.arg = malloc(bufsize * sizeof(char *));
+	if (info.arg == NULL)
+		handle_error(1);
+	token = strtok(info.cmd, "\n\t\r ");
+	while (token)
+	{
+		info.arg[i++] = token;
+		if (i >= bufsize)
+		{
+			info.arg = _realloc(info.arg, bufsize, bufsize * 2);
+			if (info.arg == NULL)
+			{
+				handle_error(1);
+			}
+		}
+		token = strtok(NULL, "\n\t\r ");
+	}
+	info.arg[i] = NULL;
+	if (**info.arg == '#')
+		return (-1);
 	return (0);
 }
