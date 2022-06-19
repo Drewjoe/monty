@@ -11,10 +11,12 @@ info_t info;
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
+
 	info.l_number = 0;
 	info.fp = NULL;
 	char *arg = NULL, *op = NULL;
 	size_t n = 0;
+
 	var.queue = 0;
 	var.stack_len = 0;
 
