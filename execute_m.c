@@ -35,7 +35,7 @@ void exec_m(stack_t **stack)
 
 	for (i = 0; valid_ops[i].opcode != NULL; i++)
 	{
-		if (strcmp(valid_ops[i].opcode, op) == 0)
+		if (strcmp(valid_ops[i].opcode, *info.arg) == 0)
 		{
 			valid_ops[i].f(stack, info.l_number);
 			return;
@@ -60,7 +60,7 @@ int treat_m(char *filename)
 	info.fp = fopen(info.fn, "r");
 	if (info.fp == NULL)
 		handle_err(2);
-	while ((n_r = getline(&info.cmd, &len, info.fp)) > 0)
+	while ((n_r = fget(&info.cmd, &len, info.fp)) > 0)
 	{
 		if (*info.cmd == '\n')
 			continue;
@@ -87,14 +87,14 @@ int split(void)
 
 	info.arg = malloc(bufsize * sizeof(char *));
 	if (info.arg == NULL)
-		handle_error(1);
+		handle_err(4);
 	token = strtok(info.cmd, "\n\t\r ");
 	while (token)
 	{
 		info.arg[i++] = token;
 		if (i >= bufsize)
 		{
-			info.arg = _realloc(info.arg, bufsize, bufsize * 2);
+			info.arg = realloc(info.arg, bufsize, bufsize * 2);
 			if (info.arg == NULL)
 			{
 				handle_error(1);
