@@ -42,3 +42,38 @@ void get_op(char *op, stack_t **stack, unsigned int line_number)
 	}
 	handle_err(3);
 }
+
+#include "monty.h"
+info_t info;
+/**
+ * treat_m - Treat The Monty File
+ * @filename: Filename From Argument
+ * Return: Data Of The Monty File
+ */
+int treat_m(char *filename)
+{
+	ssize_t n_r = 1;
+	size_t len = 0;
+	stack_t *stack = NULL;
+
+	info.fn = filename;
+	info.fp = fopen(info.fn, "r");
+	if (info.fp == NULL)
+		handle_err
+		(2);
+	while ((n_r = getline(&info.cmd, &len, info.fp)) > 0)
+	{
+		if (*info.cmd == '\n')
+			continue;
+		info.l_number++;
+		free(info.arg);
+		if (split() < 0)
+			continue;
+		if (info.arg == NULL)
+			continue;
+		get_op(&stack);
+	}
+	free_info();
+	free_list(stack);
+	return (0);
+}
