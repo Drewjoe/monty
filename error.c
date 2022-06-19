@@ -157,6 +157,6 @@ void mul_err(void)
  */
 void mod_err(void)
 {
-	frintf(stderr, "L%d: can't mod, stack too short\n", info.l_number);
+	frintf(stderr, "L%d: can't mod, stack too short\n");
 	free_info();
 }
