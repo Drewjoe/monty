@@ -45,9 +45,9 @@ void get_op(char *op, stack_t **stack, unsigned int line_number)
 
 info_t info;
 /**
- * treat_m - Treat The Monty File
- * @filename: Filename From Argument
- * Return: Data Of The Monty File
+ * treat_m - Treat the monty file
+ * @filename: filename from argument
+ * Return: data of the monty File
  */
 int treat_m(char *filename)
 {
@@ -58,8 +58,7 @@ int treat_m(char *filename)
 	info.fn = filename;
 	info.fp = fopen(info.fn, "r");
 	if (info.fp == NULL)
-		handle_err
-		(2);
+		handle_err(2);
 	while ((n_r = getline(&info.cmd, &len, info.fp)) > 0)
 	{
 		if (*info.cmd == '\n')
