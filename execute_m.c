@@ -51,7 +51,7 @@ info_t info;
  */
 int treat_m(char *filename)
 {
-	ssize_t n_r = 1;
+	int n_read;
 	int len = 0;
 	stack_t *stack = NULL;
 
@@ -59,7 +59,7 @@ int treat_m(char *filename)
 	info.fp = fopen(info.fn, "r");
 	if (info.fp == NULL)
 		handle_err(2);
-	while ((n_r = fgets(char **info.cmd, &len, info.fp)) > 0)
+	while ((n_read = getline(&info.cmd, &len, info.fp)) > 0)
 	{
 		if (*info.cmd == '\n')
 			continue;
