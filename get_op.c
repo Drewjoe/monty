@@ -43,7 +43,6 @@ void get_op(char *op, stack_t **stack, unsigned int line_number)
 	handle_err(3);
 }
 
-#include "monty.h"
 info_t info;
 /**
  * treat_m - Treat The Monty File
