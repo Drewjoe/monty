@@ -10,7 +10,7 @@ void pchar_m(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !*stack)
 	{
-		fprintf(stderr2, "L%d: can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
 		free_list();
 		exit(EXIT_FAILURE);
 	}
