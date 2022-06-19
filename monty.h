@@ -128,5 +128,7 @@ void fs_close_m(int status, void *arg);
 void free_lineptr(int status, void *arg);
 void add_node_lifo(stack_t **stack, stack_t *n_node);
 void add_node_fifo(stack_t **stack, stack_t *n_node);
+void free_info(void);
+void free_list(stack_t *stack);
 
 #endif /* MONTY_H */
